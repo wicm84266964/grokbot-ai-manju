@@ -1,7 +1,7 @@
 [project]
 name = "grokbot-ai-manju"
-version = "0.1.0"
-description = "Grok Bot full-pipeline AI漫剧 conductor: local ComfyUI (MiniMax H3) + FFmpeg"
+version = "0.0.1"
+description = "Grok Bot full-pipeline AI manju conductor: local ComfyUI (Wan/MiniMax H3) + FFmpeg"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
