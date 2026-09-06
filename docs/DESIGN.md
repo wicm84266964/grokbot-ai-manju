@@ -1,12 +1,13 @@
 # Design — grokbot-ai-manju
 
 ## Positioning
-**Grok Bot 全流程接管** AI 漫剧生产。用户只在 Grok Bot 对话；本仓库负责把命令落到本机 ComfyUI + FFmpeg。
+**Grok Bot 全流程接管** AI 漫剧。README 以「复制提示词给 Grok Bot」为主路径；命令行文档仅给开发者。
 
-## Search keywords (CN / EN)
-AI漫剧, AI短剧, Grok Bot, 全流程, ComfyUI, MiniMax H3, 海螺, 本地, 图生视频, 工作流
-AI manju, AI drama, Grok Bot pipeline, local ComfyUI, FFmpeg stitch
+## Beginner UX
+- Humans should not learn ComfyUI graphs or long shell recipes.
+- Install / first episode / troubleshoot = copy-paste prompts in `prompts/`.
+- Grok Bot operates the user PC (ComfyUI API + FFmpeg + project files).
 
 ## Engines
-- ComfyUI HTTP API (default http://127.0.0.1:8188) — video
-- FFmpeg — concat / normalize / export
+- ComfyUI HTTP API — MiniMax H3 video
+- FFmpeg — stitch / normalize / export
