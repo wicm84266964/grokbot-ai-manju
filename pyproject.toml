@@ -1,13 +1,13 @@
 [project]
-name = "manju-conductor"
+name = "grokbot-ai-manju"
 version = "0.1.0"
-description = "Grok Bot conductor for local ComfyUI (MiniMax H3) + FFmpeg AI drama pipelines"
+description = "Grok Bot full-pipeline AI漫剧 conductor: local ComfyUI (MiniMax H3) + FFmpeg"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 
 [project.scripts]
-manju = "manju_conductor.cli:main"
+manju = "grokbot_ai_manju.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]

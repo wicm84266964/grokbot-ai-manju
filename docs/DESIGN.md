@@ -1,19 +1,12 @@
-# manju-conductor design (v0)
+# Design — grokbot-ai-manju
 
-## Principles
-1. ComfyUI is a headless engine (HTTP API). Operators should not need the node graph daily.
-2. FFmpeg is the default finisher (concat / trim / normalize). CapCut drafts are optional later.
-3. Grok Bot is the UX: chat commands map to CLI / library calls on the user PC.
-4. Open-source core stays generic; personal show data stays in gitignored `shows/`.
+## Positioning
+**Grok Bot 全流程接管** AI 漫剧生产。用户只在 Grok Bot 对话；本仓库负责把命令落到本机 ComfyUI + FFmpeg。
 
-## Shot queue schema (YAML)
-See `templates/episode.example.yaml`.
+## Search keywords (CN / EN)
+AI漫剧, AI短剧, Grok Bot, 全流程, ComfyUI, MiniMax H3, 海螺, 本地, 图生视频, 工作流
+AI manju, AI drama, Grok Bot pipeline, local ComfyUI, FFmpeg stitch
 
-## ComfyUI
-- Default base URL: http://127.0.0.1:8188
-- Workflow templates live in `workflows/` (API-format JSON)
-- Dual GPU: start with one card; optional second-card text-encoder offload later
-
-## FFmpeg
-- Prefer stream copy when codecs match; re-encode only when normalizing
-- Emit `list.txt` then `ffmpeg -f concat -safe 0 -i list.txt -c copy out.mp4`
+## Engines
+- ComfyUI HTTP API (default http://127.0.0.1:8188) — video
+- FFmpeg — concat / normalize / export
