@@ -1,5 +1,5 @@
-$diffPath = 'C:\saveproject\LBJ-workspace\ComfyUI\models\diffusion_models\wan2.1_t2v_1.3B_fp16.safetensors'
-$tePath = 'C:\saveproject\LBJ-workspace\ComfyUI\models\text_encoders\umt5_xxl_fp8_e4m3fn_scaled.safetensors'
+$diffPath = 'C:\saveproject\LBJ-workspace\_external\ComfyUI\models\diffusion_models\wan2.1_t2v_1.3B_fp16.safetensors'
+$tePath = 'C:\saveproject\LBJ-workspace\_external\ComfyUI\models\text_encoders\umt5_xxl_fp8_e4m3fn_scaled.safetensors'
 $diffExpect = 2838303560L
 $teExpect = 6735845504L
 $diffUrl = 'https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/diffusion_models/wan2.1_t2v_1.3B_fp16.safetensors'

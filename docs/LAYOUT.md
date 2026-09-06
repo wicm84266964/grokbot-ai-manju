@@ -6,8 +6,8 @@
 
 1. **禁止**在 LBJ-workspace/ 根目录、桌面、用户主目录落地本项目临时文件。
 2. 引擎原始输出（如 ComfyUI/output）拷完立刻进 shows/<show>/epXX/raw/。
-3. 本机工具二进制放 tools/（gitignore），不进 Git。
-4. ComfyUI / 模型权重装在仓库外旁路目录（如 ../ComfyUI）。
+3. 本机工具二进制放 grokbot-ai-manju/tools/（gitignore），不进 Git；**不要**在工作区根放 tools/ 联接。
+4. 外部开源引擎统一放 C:\saveproject\LBJ-workspace\_external\（ComfyUI = _external/ComfyUI）。
 5. 一次性下载/轮询日志放 shows/<show>/epXX/raw/ops/（已 gitignore）。
 
 ## 仓库根（进 Git）
@@ -23,6 +23,13 @@
 | src/ | 薄调度代码 |
 | shows/ | 剧集工作区（默认 gitignore） |
 | tools/ | 本机 ffmpeg / wheels（不进 Git） |
+
+## 旁路（仓库外）
+
+| 路径 | 用途 |
+|------|------|
+| ../_external/ComfyUI | 外部开源 ComfyUI + 模型权重 |
+| 工作区根 | 只放各项目文件夹与 _external / _backup，不放临时文件 |
 
 ## 剧工作区 shows/<show_id>/（默认不进 Git）
 
@@ -61,7 +68,7 @@ epXX/                   # 单集
 ## 禁令补充
 
 1. 仓库根不放临时媒体
-2. 不在工作区根写 smoke_*.json / wait_*.log / check_*.ps1
+2. 不在工作区根写 smoke_*.json / wait_*.log / check_*.ps1 / tools 联接
 3. 人物不放仓库根；sandbox 用 shows/sandbox/
 4. 废片进 _trash/ 或删除
 

@@ -14,7 +14,7 @@ description: >-
 ## 唯一目录契约（冻结）
 
 ### 仓库根（进 Git，给小白复制）
-```text
+`	ext
 grokbot-ai-manju/
   README.md
   prompts/                 # 仅提示词文本
@@ -26,47 +26,36 @@ grokbot-ai-manju/
   src/                     # 薄调度代码
   shows/                   # 默认 gitignore：剧集工作区
   tools/                   # 本机 ffmpeg/wheels（gitignore，不进 Git）
-```
+`
 
-### 单部剧工作区（不进 Git / 用户可整个删档重来）
-```text
+### 旁路（工作区 _external/，外部开源）
+`	ext
+LBJ-workspace/
+  _external/
+    ComfyUI/               # 引擎+模型（唯一推荐位置）
+  grokbot-ai-manju/        # 本仓库
+`
+禁止在 LBJ-workspace 根再放 ComfyUI/ 或 tools 联接。
+
+### 单部剧工作区（不进 Git）
+`	ext
 shows/<show_id>/
-  source/novel/            # 整本拆章：ch001.md ...
+  source/novel/
   bible/
-    series.yaml            # 画幅、时长预算、平台、尺度
-    world.md
-    factions.md
-    locations.md
-    continuity.md
-    glossary.md
   characters/<char_id>/
-    profile.yaml
-    views/{ref_portrait,front,side,back}.png
-    sheets/turnaround.png
-    voice/{profile.yaml,sample.wav?}
   plan/
-    season_outline.md
-    episode_map.yaml       # ep ↔ 章节范围 ↔ 秒数/镜数上限
-  _shared/                 # 可选：公用 BGM、片头尾素材
+  _shared/
   epXX/
-    briefs/
-    script/
-    dialogue/
-    storyboard/
-    prompts/               # 本集 API JSON / 提示词
-    keyframes/
-    raw/                   # 引擎原始镜头
-    raw/ops/               # 一次性下载/API 日志
-    audio/                 # 本集对白/BGM 中间件
-    export/                # 唯一给用户看的成片出口
-    qc.md
-    ledger.yaml
-```
+    briefs/ script/ dialogue/ storyboard/
+    prompts/ keyframes/ raw/ raw/ops/ audio/
+    export/
+    qc.md ledger.yaml
+`
 
 ### 输入 → 落点（强制）
 | 用户输入 | 落点 |
 |---|---|
-| 整本小说文件 | source/novel/（助手拆章） |
+| 整本小说文件 | source/novel/ |
 | 角色参考图 | characters/<id>/views/ref_portrait.png |
 | 角色试音 | characters/<id>/voice/sample.wav |
 | 「做第 N 集」 | 只读写 epXX/ + 更新 bible/continuity.md |
@@ -78,7 +67,7 @@ shows/<show_id>/
 | 分镜/剧本/台词 | epXX/{storyboard,script,dialogue}/ |
 | 关键帧 | epXX/keyframes/ |
 | 原始视频 | epXX/raw/ |
-| **成片（用户要找的）** | **仅** epXX/export/ |
+| **成片** | **仅** epXX/export/ |
 | 质检 | epXX/qc.md |
 
 ### 反杂乱规则
@@ -88,7 +77,7 @@ shows/<show_id>/
 4. 同一角色全剧只用一个 char_id 目录；禁止每集复制人物树。
 5. 废弃文件进 epXX/_trash/ 或直接删，不留 final_final_v3。
 6. 烟雾测试用 shows/smoke/，与正式剧隔离。
-7. 引擎/模型装在仓库外（如 ../ComfyUI）；本机 ffmpeg/wheels 放仓库内 tools/（gitignore，不进 Git）。
+7. 外部开源引擎放 _external/（ComfyUI = _external/ComfyUI）；本机 ffmpeg/wheels 放仓库内 tools/（gitignore）；工作区根不要 tools 联接。
 8. CopyFromBox / 下载若落在用户主目录，当回合立刻搬进项目契约路径。
 
 ## 标准输入
@@ -107,7 +96,7 @@ H3：参考音色+三视图直出带声；无样本可用默认声线描述。Wa
 prompts/01-install-all.txt：装 Skill + 依赖。
 
 ## 约束
-零额外付费 API；本机 ComfyUI；FFmpeg；NO_PROXY 本机；多卡避让；暂停下载立刻停。
+零额外付费 API；本机 ComfyUI（_external/ComfyUI）；FFmpeg；NO_PROXY 本机；多卡避让；暂停下载立刻停。
 
 ## 检查清单
 全书与 episode_map；bible/characters；本集引用 id；export 唯一成片；qc/ledger；continuity 写回；无工作区根垃圾文件。

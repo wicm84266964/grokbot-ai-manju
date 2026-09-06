@@ -1,7 +1,7 @@
 $files = @(
-  'C:\saveproject\LBJ-workspace\ComfyUI\models\vae\wan_2.1_vae.safetensors',
-  'C:\saveproject\LBJ-workspace\ComfyUI\models\diffusion_models\wan2.1_t2v_1.3B_fp16.safetensors',
-  'C:\saveproject\LBJ-workspace\ComfyUI\models\text_encoders\umt5_xxl_fp8_e4m3fn_scaled.safetensors'
+  'C:\saveproject\LBJ-workspace\_external\ComfyUI\models\vae\wan_2.1_vae.safetensors',
+  'C:\saveproject\LBJ-workspace\_external\ComfyUI\models\diffusion_models\wan2.1_t2v_1.3B_fp16.safetensors',
+  'C:\saveproject\LBJ-workspace\_external\ComfyUI\models\text_encoders\umt5_xxl_fp8_e4m3fn_scaled.safetensors'
 )
 $expect = @(253815318, 2837220156, 6735845504)
 for ($i=0; $i -lt $files.Count; $i++) {
