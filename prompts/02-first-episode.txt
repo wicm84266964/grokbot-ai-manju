@@ -1,6 +1,8 @@
-我已经装好 grokbot-ai-manju 本机环境。请你作为制作中枢，带我用最少操作做出第一集样片：
+【前置】若尚未安装 Skill `ai-manju-pipeline`，先执行 prompts/00-install-skill.txt。环境未就绪则先执行 prompts/01-install-deps.txt。
 
-1) 在 shows/ 下建一个演示剧集目录和分镜队列。
-2) 我负责在对话里定故事和关键帧图（需要出图时你直接生成或告诉我贴哪）。
-3) 你负责把镜头提交给本机 ComfyUI（H3），再用 FFmpeg 拼成一集。
-4) 全程用中文短句同步进度；除非必须，不要让我打开 ComfyUI 界面。
+请按 Skill `ai-manju-pipeline` 的「首次用户引导模式」带我做第一集烟雾片：
+
+1) 只问最少 4 件事（题材、竖/横屏、时长、禁忌）；我答不全你就给默认并开工。
+2) 在 shows/ 下建集目录，写 brief / 剧本 / 分镜 / 台账。
+3) 出关键帧；本机 ComfyUI API 渲一镜；FFmpeg 归档到 export/。
+4) 全程短句中文同步进度，不要让我打开 ComfyUI 界面。

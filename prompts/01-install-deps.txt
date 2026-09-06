@@ -1,13 +1,15 @@
-请按开源项目 grokbot-ai-manju 的约定，在我这台 Windows 电脑上完成 AI 漫剧本机环境安装。目标：我以后只在 Grok Bot 里下命令，不自己点 ComfyUI、不自己敲复杂命令。
+【前置】若尚未安装 Skill `ai-manju-pipeline`，先完整执行 prompts/00-install-skill.txt，再回来跑本提示词。
 
-请你直接操作我的电脑完成，并在关键步骤用中文简短汇报进度：
+请按开源项目 grokbot-ai-manju 的约定，在我这台 Windows 电脑上完成 AI 漫剧本机环境安装。目标：以后只对 Grok Bot 下中文命令，我自己不碰 ComfyUI，也不自己敲复杂命令。
 
-1) 确认工作区：若已有 C:\saveproject\LBJ-workspace\grokbot-ai-manju 就用它；否则按该路径克隆/创建项目。
-2) 安装或检测 FFmpeg，并保证终端里能运行 ffmpeg -version。
-3) 安装或检测 ComfyUI（优先官方/常用 Windows 方式），监听 http://127.0.0.1:8188；装好后能用 HTTP API 访问。
-4) 准备 MiniMax H3 所需模型与工作流目录（按项目 docs / workflows 说明）；若下载很大，先给出体积与磁盘要求，再开始下。
+请直接操作我的电脑完成，并在关键步骤用中文短句汇报进度：
+
+1) 确认工作区优先使用 C:\saveproject\LBJ-workspace\grokbot-ai-manju（若没有则按该路径克隆/同步项目）。
+2) 安装并验证 FFmpeg（终端可运行 ffmpeg -version）。
+3) 安装并启动 ComfyUI，监听 http://127.0.0.1:8188，装好后用 HTTP API 探活；访问本机接口时设置 NO_PROXY=127.0.0.1,localhost（若系统开了代理）。
+4) 先准备烟雾小模型（如 Wan 2.1 T2V 1.3B + VAE + 文本编码器）；正式 MiniMax H3 可后装。下载很大就后台下并汇报进度，需要暂停听我一句「暂停」。
 5) 在项目里创建 Python 虚拟环境并 pip install -e .
-6) 写一份本机就绪检查：ComfyUI 是否可访问、ffmpeg 是否可用、项目 CLI 是否可用。
-7) 不要让我学习节点连线；需要我登录/确认下载的地方，用一句话清楚告诉我点哪里。
+6) 写一份本机验收：ComfyUI 是否可访问、ffmpeg 是否可用、项目 CLI 是否可用、Skill 是否已装。
+7) 不要逼我学习节点连线；需要我登录/确认的地方用一句话点我。
 
-完成后用三句话告诉我：怎么启动 ComfyUI、怎么在 Grok Bot 里下第一条出片命令、素材放哪个文件夹。
+完成后用三句话告诉我：怎么启动 ComfyUI、怎么对 Grok Bot 下「做第一集」、素材放哪个文件夹。

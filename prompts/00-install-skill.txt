@@ -1,0 +1,1 @@
+请执行同目录 `01-install-all.txt` 全文：先安装 Skill `ai-manju-pipeline`，再安装 FFmpeg/ComfyUI/烟雾模型依赖。不要让我手改配置。

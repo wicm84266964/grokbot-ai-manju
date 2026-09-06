@@ -1,0 +1,18 @@
+char_id: REPLACE
+show_id: REPLACE
+name_zh: REPLACE
+age: 0
+personality: REPLACE
+visual_anchors:
+  hair: REPLACE
+  face: REPLACE
+  costume: REPLACE
+  style: REPLACE
+refs:
+  user_portrait: views/ref_portrait.png
+  turnaround_sheet: sheets/turnaround.png
+  front: views/front.png
+  side: views/side.png
+  back: views/back.png
+voice_id: REPLACE_voice
+notes: 分镜/出图/视频必须引用 char_id 与三视图

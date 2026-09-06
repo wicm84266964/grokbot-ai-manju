@@ -1,0 +1,15 @@
+voice_id: REPLACE_voice
+char_id: REPLACE
+label_zh: REPLACE
+gender: unknown
+age_feel: REPLACE
+traits: []
+h3_reference:
+  status: waiting_sample  # or ready
+  sample_path: voice/sample.wav
+  sample_spec: 3-10s clean speech, no BGM
+  usage: MiniMax H3 reference audio
+fallback_tts:
+  status: optional
+  engines: [IndexTTS, CosyVoice]
+prompt_hint: REPLACE english voice hint
