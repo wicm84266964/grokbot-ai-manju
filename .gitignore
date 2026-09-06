@@ -11,6 +11,17 @@ build/
 shows/*
 !shows/.gitkeep
 
+# Local vendor binaries / wheels (under repo, never commit)
+tools/
+*.whl
+*.zip
+
+# Scratch / machine dumps — never leave in workspace root
+*.log
+__scratch__/
+.local/
+**/raw/ops/
+
 # Secrets / machine config
 .env
 config.local.yaml

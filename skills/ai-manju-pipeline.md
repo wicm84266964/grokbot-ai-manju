@@ -7,7 +7,7 @@ description: >-
 ---
 # AI漫剧生产流水线（零额外视频 API）
 
-目标：整本小说 → 系列圣经 → 分集规划 → 单集生产 → 质检返工 → 发行包装。用户少碰文件；**所有读写必须落在下方唯一目录契约内**，禁止在仓库根或桌面散落中间文件。
+目标：整本小说 → 系列圣经 → 分集规划 → 单集生产 → 质检返工 → 发行包装。用户少碰文件；**所有读写必须落在下方唯一目录契约内**，禁止在仓库根、工作区根或桌面散落中间文件。
 
 **交互：先引导，再接指令。**
 
@@ -22,8 +22,10 @@ grokbot-ai-manju/
   docs/LAYOUT.md           # 本契约说明
   templates/               # 空模板（bible/episode/character）
   workflows/               # ComfyUI 工作流模板（无权重）
+  scripts/                 # 本机辅助脚本
   src/                     # 薄调度代码
   shows/                   # 默认 gitignore：剧集工作区
+  tools/                   # 本机 ffmpeg/wheels（gitignore，不进 Git）
 ```
 
 ### 单部剧工作区（不进 Git / 用户可整个删档重来）
@@ -54,6 +56,7 @@ shows/<show_id>/
     prompts/               # 本集 API JSON / 提示词
     keyframes/
     raw/                   # 引擎原始镜头
+    raw/ops/               # 一次性下载/API 日志
     audio/                 # 本集对白/BGM 中间件
     export/                # 唯一给用户看的成片出口
     qc.md
@@ -63,28 +66,30 @@ shows/<show_id>/
 ### 输入 → 落点（强制）
 | 用户输入 | 落点 |
 |---|---|
-| 整本小说文件 | `source/novel/`（助手拆章） |
-| 角色参考图 | `characters/<id>/views/ref_portrait.png` |
-| 角色试音 | `characters/<id>/voice/sample.wav` |
-| 「做第 N 集」 | 只读写 `epXX/` + 更新 `bible/continuity.md` |
+| 整本小说文件 | source/novel/（助手拆章） |
+| 角色参考图 | characters/<id>/views/ref_portrait.png |
+| 角色试音 | characters/<id>/voice/sample.wav |
+| 「做第 N 集」 | 只读写 epXX/ + 更新 bible/continuity.md |
 
 ### 输出 → 落点（强制）
 | 产物 | 落点 |
 |---|---|
-| 系列规划 | `bible/` + `plan/` |
-| 分镜/剧本/台词 | `epXX/{storyboard,script,dialogue}/` |
-| 关键帧 | `epXX/keyframes/` |
-| 原始视频 | `epXX/raw/` |
-| **成片（用户要找的）** | **仅** `epXX/export/` |
-| 质检 | `epXX/qc.md` |
+| 系列规划 | bible/ + plan/ |
+| 分镜/剧本/台词 | epXX/{storyboard,script,dialogue}/ |
+| 关键帧 | epXX/keyframes/ |
+| 原始视频 | epXX/raw/ |
+| **成片（用户要找的）** | **仅** epXX/export/ |
+| 质检 | epXX/qc.md |
 
 ### 反杂乱规则
 1. 仓库根禁止新增临时 png/mp4/json（除文档与代码）。
-2. ComfyUI 输出必须立刻拷到 `epXX/raw/`，不让用户去 ComfyUI/output 翻找。
-3. 同一角色全剧只用一个 `char_id` 目录；禁止每集复制人物树。
-4. 废弃文件进 `epXX/_trash/` 或直接删，不留 `final_final_v3`。
-5. 烟雾测试用 `shows/smoke/`，与正式剧隔离。
-6. 引擎/模型装在仓库外（如 `../ComfyUI`），本仓库只保存路径配置。
+2. **禁止**在 LBJ-workspace 工作区根、桌面、用户主目录落地本项目文件；临时脚本进 scripts/，日志进 shows/<show>/epXX/raw/ops/。
+3. ComfyUI 输出必须立刻拷到 epXX/raw/，不让用户去 ComfyUI/output 翻找。
+4. 同一角色全剧只用一个 char_id 目录；禁止每集复制人物树。
+5. 废弃文件进 epXX/_trash/ 或直接删，不留 final_final_v3。
+6. 烟雾测试用 shows/smoke/，与正式剧隔离。
+7. 引擎/模型装在仓库外（如 ../ComfyUI）；本机 ffmpeg/wheels 放仓库内 tools/（gitignore，不进 Git）。
+8. CopyFromBox / 下载若落在用户主目录，当回合立刻搬进项目契约路径。
 
 ## 标准输入
 首选整本小说 → 圣经 + episode_map → 按集拍。单章仅烟雾/补拍。聊天丢参考图 → 更新 characters。
@@ -99,10 +104,10 @@ H3：参考音色+三视图直出带声；无样本可用默认声线描述。Wa
 开集读 continuity + 上集 qc；变更写回 bible。
 
 ## 仓库自举
-`prompts/01-install-all.txt`：装 Skill + 依赖。
+prompts/01-install-all.txt：装 Skill + 依赖。
 
 ## 约束
 零额外付费 API；本机 ComfyUI；FFmpeg；NO_PROXY 本机；多卡避让；暂停下载立刻停。
 
 ## 检查清单
-全书与 episode_map；bible/characters；本集引用 id；export 唯一成片；qc/ledger；continuity 写回；无根目录垃圾文件。
+全书与 episode_map；bible/characters；本集引用 id；export 唯一成片；qc/ledger；continuity 写回；无工作区根垃圾文件。
