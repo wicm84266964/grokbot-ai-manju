@@ -1,86 +1,88 @@
 # grokbot-ai-manju
 
-**Grok Bot 全流程接管 · AI 漫剧工厂**（MIT 开源）
+**Grok Bot full-pipeline takeover · AI manju / short-drama factory** (MIT)
 
-用自然语言 + 整本小说，让 Grok Bot 在你的 Windows 本机完成：系列规划 → 人物三视图/声线 → 剧本分镜 → 关键帧 → 本机 ComfyUI 生视频（Wan 烟雾 / MiniMax H3 带声）→ FFmpeg 成片。你尽量只说话、丢文件、做审美否决。
+[English](./README.md) | [中文](./README.zh-CN.md)
+
+Build vertical AI manju with natural language and a full novel. Grok Bot drives your Windows PC through series planning → character three-views / voice → script & storyboard → keyframes → local ComfyUI video (Wan smoke / MiniMax H3 with audio) → FFmpeg export. You mostly talk, drop files, and veto aesthetics.
 
 > Keywords / Topics: `ai-manju` `ai-drama` `comfyui` `grok-bot` `minimax-h3` `wan21` `ffmpeg` `storyboard` `character-bible` `local-ai-video` `chinese-donghua` `open-source`
 
-**当前版本：** [v0.0.1](https://github.com/wicm84266964/grokbot-ai-manju/releases/tag/v0.0.1)
+**Current release:** [v0.0.1](https://github.com/wicm84266964/grokbot-ai-manju/releases/tag/v0.0.1)
 
 ---
 
-## 你能用它干什么
+## What you get
 
-| 能力 | 说明 |
+| Capability | Detail |
 |------|------|
-| 整本小说入库 | 建世界观/势力/地点/伏笔表 + 分集地图 episode_map |
-| 按集生产 | 一集一集出：剧本、台词、分镜、关键帧、视频、成片 |
-| 人物一致性 | characters/<id>/ 三视图 + 声线档案；聊天丢参考图即可建卡 |
-| 本机出片 | ComfyUI HTTP API（不必学节点）；H3 可参考音色直出带声视频 |
-| 成片出口唯一 | 只看 shows/<show>/epXX/export/ |
-| 一键提示词 | 复制提示词 A 给 Grok Bot：装 Skill + 装依赖 |
+| Full-novel intake | World / factions / locations / continuity + `episode_map` |
+| Episode production | Script, dialogue, storyboard, keyframes, video, final cut |
+| Character consistency | `characters/<id>/` three-views + voice profile; chat-drop refs to create cards |
+| Local render | ComfyUI HTTP API (no node UI required); H3 can emit video with reference timbre |
+| Single export path | Only look at `shows/<show>/epXX/export/` |
+| One-shot prompts | Copy prompt A to Grok Bot: install Skill + deps |
 
-适合：AI 从业者/创作者想做竖屏漫剧，但不想维护一堆散乱工程。
-
----
-
-## 全链路（Skill ai-manju-pipeline）
-
-1. **系列层**：整本小说 → bible/ + plan/episode_map.yaml
-2. **人物层**：参考图 → 三视图 + voice/profile.yaml（可选 sample.wav）
-3. **单集层**：剧本 → 台词 → 分镜 → 关键帧 → 本机视频 →（H3 带声 / 字幕占位）→ FFmpeg
-4. **质检/返工**：qc.md；可按 shot_id 只重渲一镜
-5. **发行包装**：封面、标题条、简介、竖屏安全区
-
-目录契约详见 [docs/LAYOUT.md](./docs/LAYOUT.md)。
+Built for AI practitioners / creators who want vertical manju without a pile of scattered project folders.
 
 ---
 
-## 5 分钟上手
+## Full pipeline (Skill `ai-manju-pipeline`)
 
-1. 安装能控制本机的 **Grok Bot**
-2. 克隆本仓库到本机（建议放在你的工作区项目目录下）
-3. 复制 [prompts/01-install-all.txt](./prompts/01-install-all.txt)（提示词 A）整段发给 Grok Bot
-4. 再丢**整本小说**或复制 [prompts/02-first-episode.txt](./prompts/02-first-episode.txt)
+1. **Series:** full novel → `bible/` + `plan/episode_map.yaml`
+2. **Characters:** refs → three-views + `voice/profile.yaml` (optional `sample.wav`)
+3. **Episode:** script → dialogue → storyboard → keyframes → local video → (H3 audio / subtitle placeholder) → FFmpeg
+4. **QC / rework:** `qc.md`; re-render one shot by `shot_id`
+5. **Release pack:** cover, title bar, blurb, vertical safe area
 
-提示词索引：[prompts/README.md](./prompts/README.md)
+Folder contract: [docs/LAYOUT.md](./docs/LAYOUT.md).
 
 ---
 
-## 架构
+## 5-minute start
+
+1. Install **Grok Bot** with local PC control
+2. Clone this repo into your workspace project folder
+3. Paste [prompts/01-install-all.txt](./prompts/01-install-all.txt) (prompt A) to Grok Bot
+4. Drop a **full novel**, or paste [prompts/02-first-episode.txt](./prompts/02-first-episode.txt)
+
+Prompt index: [prompts/README.md](./prompts/README.md)
+
+---
+
+## Architecture
 
 ```
-你 → Grok Bot（Skill 驱动）
-       ↓
-grokbot-ai-manju（目录契约 + 薄调度）
-       ↓
-本机 ComfyUI（Wan / H3）+ FFmpeg → shows/<show>/epXX/export/
+You → Grok Bot (Skill-driven)
+         ↓
+grokbot-ai-manju (folder contract + thin scheduler)
+         ↓
+Local ComfyUI (Wan / H3) + FFmpeg → shows/<show>/epXX/export/
 ```
 
-- 外部开源引擎放工作区 `_external/ComfyUI`（不进本仓库）
-- 本机 ffmpeg / wheels 放本仓库 `tools/`（gitignore）
-- 模型权重不进 Git
+- Third-party engine lives under workspace `_external/ComfyUI` (not in this repo)
+- Local ffmpeg / wheels live under repo `tools/` (gitignored)
+- Model weights stay out of Git
 
 ---
 
-## 仓库里有什么 / 没有什么
+## In repo / not in repo
 
-**有：** README、CHANGELOG.md、prompts/、skills/、docs/、templates/、workflows/ 模板、scripts/、src/ CLI 脚手架、MIT License
+**Included:** README (EN/ZH), `CHANGELOG.md`, `prompts/`, `skills/`, `docs/`, `templates/`, `workflows/` templates, `scripts/`, `src/` CLI scaffold, MIT License
 
-**默认没有（gitignore）：** shows/ 剧集媒体、tools/ 二进制、模型、venv、密钥
+**Gitignored by default:** `shows/` episode media, `tools/` binaries, models, venv, secrets
 
 ---
 
 ## License
 
-[MIT](./LICENSE) — 开源，可商用、可修改，保留版权声明即可。
+[MIT](./LICENSE) — free to use commercially and modify; keep the copyright notice.
 
 ---
 
-## 状态（v0.0.1）
+## Status (v0.0.1)
 
-- 开源脚手架与目录契约冻结
-- Skill ai-manju-pipeline：整本优先 + 质检/返工/发行设计
-- 本地烟雾：Wan 2.1 T2V 1.3B 一镜竖屏已跑通（API → webp → FFmpeg mp4）
-- 正式 H3 带声链与调度 CLI 仍在增强中
+- Open-source scaffold and I/O contract frozen
+- Skill `ai-manju-pipeline`: full-novel-first + QC / rework / release design
+- Local smoke: Wan 2.1 T2V 1.3B vertical one-shot path verified (API → webp → FFmpeg mp4)
+- Native H3 audio path and production scheduler CLI still in progress
