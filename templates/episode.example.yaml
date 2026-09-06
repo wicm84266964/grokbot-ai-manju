@@ -1,0 +1,18 @@
+show: demo
+episode: "01"
+title: "Demo Episode"
+fps: 24
+resolution: "1280x720"
+shots:
+  - id: "001"
+    kind: i2v
+    image: "keyframes/001.png"
+    prompt: "character walks into frame, steady camera, anime style"
+    duration_sec: 8
+    status: pending
+  - id: "002"
+    kind: i2v
+    image: "keyframes/002.png"
+    prompt: "close-up reaction, subtle motion"
+    duration_sec: 6
+    status: pending
